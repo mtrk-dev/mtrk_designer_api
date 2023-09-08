@@ -6,30 +6,22 @@
 ### Anais Artiges and the mtrk project team at NYU - 09/07/2023              ###
 ################################################################################
 
-class Step:
+from steps.Step import Step
+
+class Initialization(Step):
     # constructor
-    def __init__(self):
-        self._action = "default_step"
-        self._object = "default_step"
-        self._start_time_usec = 0
+    def __init__(self, *args):
+        Step.__init__(self)
+        self._action = "init"
+        if len(args) == 1:
+           self._gradients = args[0]
+        else: 
+            self._gradients = "default"
     
     # getters
-    def getAction(self):
-        return self._action
-    
-    def getObject(self):
-        return self._object
-    
-    def getStartTimeUsec(self):
-        return self._start_time_usec
+    def getGradients(self):
+        return self._gradients
     
     # setters
-    def setAction(self, action):
-        self._action = action
-    
-    def setObject(self, object):
-        self._object = object
-    
-    def setStartTimeUsec(self, start_time_usec):
-        self._start_time_usec = start_time_usec
-    
+    def setGradients(self, gradients):
+        self._gradients = gradients
