@@ -6,33 +6,25 @@
 ### Anais Artiges and the mtrk project team at NYU - 09/07/2023              ###
 ################################################################################
 
-class Step:
+from objects.Object import Object
+
+class SynchronizationObject(Object):
     # constructor
     def __init__(self, *args):
-        if len(args) == 1:
-            self._action = args[0]
-        else:
-            self._action = "default_step"
-        self._object = "default_step"
-        self._start_time_usec = 0
+        Object.__init__(self)
+        self._type = "sync"
+        if len(args) == 2:
+            self._duration = args[0]
+            self._event = args[1]
+        else: 
+            self._event = "default_event"
     
     # getters
-    def getAction(self):
-        return self._action
+    def getEvent(self):
+        return self._event
     
-    def getObject(self):
-        return self._object
-    
-    def getStartTimeUsec(self):
-        return self._start_time_usec
-    
+
     # setters
-    def setAction(self, action):
-        self._action = action
-    
-    def setObject(self, object):
-        self._object = object
-    
-    def setStartTimeUsec(self, start_time_usec):
-        self._start_time_usec = start_time_usec
+    def setEvent(self, event):
+        self._event = event
     

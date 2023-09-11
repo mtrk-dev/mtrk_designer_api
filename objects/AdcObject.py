@@ -6,33 +6,32 @@
 ### Anais Artiges and the mtrk project team at NYU - 09/07/2023              ###
 ################################################################################
 
-class Step:
+from objects.Object import Object
+
+class AdcObject(Object):
     # constructor
     def __init__(self, *args):
-        if len(args) == 1:
-            self._action = args[0]
-        else:
-            self._action = "default_step"
-        self._object = "default_step"
-        self._start_time_usec = 0
+        Object.__init__(self)
+        self._type = "adc"
+        if len(args) == 3:
+            self._duration = args[0]
+            self._samples = args[1]
+            self._dwell_time = args[2]
+        else: 
+            self._samples = 9999
+            self._dwell_time = 9999
     
     # getters
-    def getAction(self):
-        return self._action
-    
-    def getObject(self):
-        return self._object
-    
-    def getStartTimeUsec(self):
-        return self._start_time_usec
-    
+    def getSamples(self):
+        return self._samples
+
+    def getDwellTime(self):
+        return self._dwell_time
+        
+
     # setters
-    def setAction(self, action):
-        self._action = action
-    
-    def setObject(self, object):
-        self._object = object
-    
-    def setStartTimeUsec(self, start_time_usec):
-        self._start_time_usec = start_time_usec
-    
+    def setSamples(self, samples):
+        self._samples = samples
+
+    def setDwellTime(self, dwell_time):
+        self._dwell_time = dwell_time
