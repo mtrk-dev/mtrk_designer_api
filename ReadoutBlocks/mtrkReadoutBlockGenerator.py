@@ -125,6 +125,7 @@ def add_cartesian_readout(base_sequence, insertion_block, previous_block, fov, r
                 variableAmplitude = EquationRef(type = "equation",
                                               equation = equationName)
                 base_sequence.equations.update({equationName : {}})
+                print("equation" + blocks[block_index][index][3])
                 equation = blocks[block_index][index][3].replace("counter2", "ctr(1)") ## TO DO make counter variable
                 equation = blocks[block_index][index][3].replace("counter3", "ctr(2)") ## TO DO make counter variable
                 base_sequence.equations[equationName].update({"equation" : equation})
