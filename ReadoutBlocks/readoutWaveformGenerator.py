@@ -466,7 +466,7 @@ def cartesian(fov, n, dt, gamp, gslew, dirx=-1, diry=1):
         signz = -1
     gzprew_max_ampl = max(abs(gzprew[0]))
     stepz = gzprew_max_ampl / part_num # for part_num slabs
-    gzprew_equation = str(signz) + "*(" + str(gzprew_max_ampl) + "-" + str(2*stepz) +"*counter2)"
+    gzprew_equation = str(signz) + "*(" + str(gzprew_max_ampl) + "-" + str(2*stepz) +"*counter2ee)"
     ##for 3D
     
     # prepare blocks for mtrk
