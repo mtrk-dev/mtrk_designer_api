@@ -71,7 +71,7 @@ def add_cartesian_readout(base_sequence, insertion_block, previous_block, fov, r
 
     base_sequence.instructions.update({"block_cartesian" : {}})
     block = Instruction(print_counter = "on",
-                        print_message = "Running cartesian readout test",
+                        print_message = "Running cartesian readout testou",
                         steps = [])
     base_sequence.instructions["block_cartesian"].update(block)
     
