@@ -450,14 +450,14 @@ def cartesian(fov, n, dt, gamp, gslew, dirx=-1, diry=1):
         sign = -1
     gyprew_max_ampl = max(abs(gyprew[0]))
     step = gyprew_max_ampl / n
-    gyprew_equation = str(sign) + "*(" + str(gyprew_max_ampl) + "-" + str(2*step) +"*counter3)"
+    gyprew_equation = str(sign) + "*(" + str(gyprew_max_ampl) + "-" + str(2*step) +"*ctr(2))"
 
     sign = 1
     if areagy<0:
         sign = -1
     gyrep_max_ampl = max(abs(gyrep[0]))
     step = gyprew_max_ampl / n
-    gyrep_equation = str(sign) + "*(" + str(gyrep_max_ampl) + "-" + str(2*step) +"*counter3)"
+    gyrep_equation = str(sign) + "*(" + str(gyrep_max_ampl) + "-" + str(2*step) +"*ctr(2))"
 
     ##for 3D
     # Prepare dynamic partition encoding
@@ -466,7 +466,7 @@ def cartesian(fov, n, dt, gamp, gslew, dirx=-1, diry=1):
         signz = -1
     gzprew_max_ampl = max(abs(gzprew[0]))
     stepz = gzprew_max_ampl / part_num # for part_num slabs
-    gzprew_equation = str(signz) + "*(" + str(gzprew_max_ampl) + "-" + str(2*stepz) +"*counter2ee)"
+    gzprew_equation = str(signz) + "*(" + str(gzprew_max_ampl) + "-" + str(2*stepz) +"*ctr(1))"
     ##for 3D
     
     # prepare blocks for mtrk
