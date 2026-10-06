@@ -263,6 +263,10 @@ def extractStepInformation(sequence_data, currentBlock, system,
                 alpha = currentObject.flipangle
                 sliceThickness = currentObject.thickness*1e-3
                 phaseOffset = currentObject.initial_phase
+                if hasattr(currentObject,"freq_offset"):
+                    freqOffset = currentObject.freq_offset
+                else:
+                    freqOffset = 0
                 for value_counter in range(0, len(currentArray.data)):
                     if value_counter%2 == 0:
                         rfSignalArray.append(currentArray.data[value_counter])
@@ -282,7 +286,7 @@ def extractStepInformation(sequence_data, currentBlock, system,
                                 bandwidth = rfBandwidth, 
                                 delay = delay*1e-6,
                                 dwell = rfDwellTime*1e-6, 
-                                freq_offset = 0,
+                                freq_offset = freqOffset,
                                 no_signal_scaling = False,
                                 max_grad = 0,
                                 max_slew = 0,
@@ -443,8 +447,8 @@ def buildPulseqSequenceBlocks(indexList, seq, stepInfoList, normalizedWaveforms,
         if stepInfoList[3] != []:
             for variableAmplitudeEventIndex in range(0, len(stepInfoList[3])):
                 equationString = stepInfoList[2][variableAmplitudeEventIndex]
-                # print("+-+-+ Evaluating equation: ", equationString)
-                # print("     with counter values: ", ctrList)
+                #print("+-+-+ Evaluating equation: ", equationString)
+                #print("     with counter values: ", ctrList)
                 counterNumberFound = False
                 stringCounterIndex = 0
                 while counterNumberFound == False:
@@ -455,10 +459,10 @@ def buildPulseqSequenceBlocks(indexList, seq, stepInfoList, normalizedWaveforms,
                                      str("ctr(" + str(stringCounterIndex) + ")")
                         counterNumberFound = True
                     stringCounterIndex += 1
-                # print("+-+-+ Replacing ", stringToReplace)
-                # print("+-+-+ index: ", indexList)
-                # print("+-+-+ stringToReplace: ", stringToReplace)
-                # print("+-+-+ replacement value: ", indexList[stringCounterIndex-2])
+                #print("+-+-+ Replacing ", stringToReplace)
+                #print("+-+-+ index: ", indexList)
+                #print("+-+-+ stringToReplace: ", stringToReplace)
+                #print("+-+-+ replacement value: ", indexList[stringCounterIndex-2])
                 index = indexList[stringCounterIndex-2]
                 equationString = equationString.replace(stringToReplace,
                                                             "index")
@@ -643,10 +647,13 @@ def buildPulseqSequence(seq, indexList, actionList, stepInfoList, ctrList):
 ################################################################################
 ## Converting the file from mtrk to Pulseq format using command line for input
 ################################################################################
-# print("Converting mtrk to Pulseq format")
-# print("mtrk file to convert: ")
-# fileToConvert = input()
-# print("Pulseq file to create: ")
-# outputFile = input()
+print("Converting mtrk to Pulseq format")
+print("mtrk file to convert: ")
+fileToConvert = input()
+print("Pulseq file to create: ")
+outputFile = input()
+
+# fileToConvert = "se2dms.mtrk"
+# outputFile = "se2dms.seq"
 
 # mtrkToPulseqConverter(fileToConvert, outputFile)
